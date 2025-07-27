@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetFood Connect - Vendor Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-yellow-500 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://placehold.co/40" alt="StreetFood Connect logo showing a cart and vegetables" class="h-10 w-10 rounded-full">
+                <span class="text-xl font-bold text-white">StreetFood Connect</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#marketplace" class="text-white hover:text-yellow-200">Marketplace</a>
+                <a href="#prices" class="text-white hover:text-yellow-200">Price Trends</a>
+                <a href="#orders" class="text-white hover:text-yellow-200">My Orders</a>
+                <a href="#account" class="text-white hover:text-yellow-200">Account</a>
+            </div>
+            <button class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl font-bold mb-4">Connect with Trusted Suppliers</h1>
+                <p class="text-xl mb-6">Find quality ingredients at affordable prices for your street food business</p>
+                <div class="flex space-x-4">
+                    <button onclick="openModal('register-modal')" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-lg">Register Now</button>
+                    <button onclick="openModal('login-modal')" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg">Login</button>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://placehold.co/600x400" alt="Street food vendor preparing food with fresh ingredients at a vibrant market" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace Section -->
+    <section id="marketplace" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Marketplace</h2>
+            <div class="flex mb-6 justify-center">
+                <div class="relative w-full md:w-1/2">
+                    <input type="text" placeholder="Search for ingredients..." class="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-3 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x400" alt="Bright red fresh tomatoes arranged in wooden crates" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-bold">In Stock</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Fresh Tomatoes</h3>
+                        <p class="text-gray-600 mb-2">Grade A tomatoes from local farms</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-lg">₹65/kg</span>
+                            <span class="text-sm text-gray-500">Min. order: 5kg</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-gray-500 ml-2">(24 reviews)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <button onclick="openModal('supplier-modal')" class="text-yellow-600 hover:text-yellow-700 font-medium">View Supplier</button>
+                            <button onclick="addToCart('Fresh Tomatoes', 65, 'kg')" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x400" alt="Fresh onions in a basket with green stems" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-bold">In Stock</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Onions</h3>
+                        <p class="text-gray-600 mb-2">Premium quality onions, medium size</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-lg">₹28/kg</span>
+                            <span class="text-sm text-gray-500">Min. order: 10kg</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                ★★★★☆
+                            </div>
+                            <span class="text-gray-500 ml-2">(18 reviews)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <button onclick="openModal('supplier-modal')" class="text-yellow-600 hover:text-yellow-700 font-medium">View Supplier</button>
+                            <button onclick="addToCart('Onions', 28, 'kg')" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="relative">
+                        <img src="https://placehold.co/600x400" alt="Fresh potatoes in a burlap sack with dirt still on them" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold">Best Deal</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Potatoes</h3>
+                        <p class="text-gray-600 mb-2">Fresh farm potatoes, perfect for snacks</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-lg">₹22/kg</span>
+                            <span class="text-sm text-gray-500">Min. order: 15kg</span>
+                        </div>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-gray-500 ml-2">(36 reviews)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <button onclick="openModal('supplier-modal')" class="text-yellow-600 hover:text-yellow-700 font-medium">View Supplier</button>
+                            <button onclick="addToCart('Potatoes', 22, 'kg')" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Trends Section -->
+    <section id="prices" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Price Trends</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-4">7-Day Price Movement</h3>
+                <div class="mb-4">
+                    <canvas id="priceChart" height="300"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-yellow-800">Tomatoes</span>
+                            <span class="text-red-600 font-bold">▲ 12%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Prices rising due to reduced supply</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-green-800">Onions</span>
+                            <span class="text-green-600 font-bold">▼ 5%</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">New harvest season began</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-blue-800">Potatoes</span>
+                            <span class="text-gray-600 font-bold">▬ Stable</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Supply meeting demand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders Section -->
+    <section id="orders" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">My Orders</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Order ID</th>
+                            <th class="py-3 px-4 text-left">Items</th>
+                            <th class="py-3 px-4 text-left">Supplier</th>
+                            <th class="py-3 px-4 text-left">Date</th>
+                            <th class="py-3 px-4 text-left">Amount</th>
+                            <th class="py-3 px-4 text-left">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">#ORD-1001</td>
+                            <td class="py-3 px-4">Tomatoes (10kg), Onions (15kg)</td>
+                            <td class="py-3 px-4">Farm Fresh Suppliers</td>
+                            <td class="py-3 px-4">24 May 2023</td>
+                            <td class="py-3 px-4">₹890</td>
+                            <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Delivered</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">#ORD-1002</td>
+                            <td class="py-3 px-4">Potatoes (20kg)</td>
+                            <td class="py-3 px-4">Veggie Direct</td>
+                            <td class="py-3 px-4">20 May 2023</td>
+                            <td class="py-3 px-4">₹440</td>
+                            <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">In Transit</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-4">#ORD-1003</td>
+                            <td class="py-3 px-4">Spices Pack (5kg)</td>
+                            <td class="py-3 px-4">Masala King</td>
+                            <td class="py-3 px-4">18 May 2023</td>
+                            <td class="py-3 px-4">₹1,250</td>
+                            <td class="py-3 px-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Processing</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full md:w-96 bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-xl font-bold">Your Cart</h3>
+            <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div id="cart-items" class="p-4">
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="text-center text-gray-500 py-8">Your cart is empty</div>
+        </div>
+        <div class="p-4 border-t border-gray-200">
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>Total:</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-lg">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeCart()"></div>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Login to Your Account</h3>
+                <button onclick="closeModal('login-modal')" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="login-email">Email</label>
+                    <input type="email" id="login-email" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2" for="login-password">Password</label>
+                    <input type="password" id="login-password" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <button type="button" onclick="login()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg mb-4">Login</button>
+                <p class="text-center text-gray-600">Don't have an account? <button type="button" onclick="switchModals('login-modal', 'register-modal')" class="text-yellow-600 hover:underline">Register here</button></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Create an Account</h3>
+                <button onclick="closeModal('register-modal')" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="register-name">Full Name</label>
+                    <input type="text" id="register-name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="register-email">Email</label>
+                    <input type="email" id="register-email" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="register-phone">Phone Number</label>
+                    <input type="tel" id="register-phone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="register-password">Password</label>
+                    <input type="password" id="register-password" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2" for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <button type="button" onclick="register()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg mb-4">Register</button>
+                <p class="text-center text-gray-600">Already have an account? <button type="button" onclick="switchModals('register-modal', 'login-modal')" class="text-yellow-600 hover:underline">Login here</button></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supplier Modal -->
+    <div id="supplier-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Supplier Details</h3>
+                <button onclick="closeModal('supplier-modal')" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex items-center mb-6">
+                <img src="https://placehold.co/80" alt="Farm Fresh Suppliers logo showing a basket of vegetables" class="h-20 w-20 rounded-full mr-4">
+                <div>
+                    <h4 class="font-bold text-lg">Farm Fresh Suppliers</h4>
+                    <p class="text-gray-600">Since 2015</p>
+                    <div class="flex mt-1">
+                        <div class="flex text-yellow-400">
+                            ★★★★★
+                        </div>
+                        <span class="text-gray-500 ml-2">(42 reviews)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h5 class="font-bold mb-2">About</h5>
+                <p class="text-gray-700">We are a family-owned farm supplying fresh produce directly to local vendors. Our focus is on quality and fair prices.</p>
+            </div>
+            <div class="mb-4">
+                <h5 class="font-bold mb-2">Delivery Options</h5>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Same-day delivery (orders before 10AM)</li>
+                    <li>Next-day delivery</li>
+                    <li>Self-pickup available</li>
+                </ul>
+            </div>
+            <div class="mb-4">
+                <h5 class="font-bold mb-2">Contact</h5>
+                <p class="text-gray-700">Phone: +91 98765 43210</p>
+                <p class="text-gray-700">Email: contact@farmfresh.com</p>
+            </div>
+            <button onclick="closeModal('supplier-modal')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">Close</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Checkout</h3>
+                <button onclick="closeModal('checkout-modal')" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mb-4">
+                <h5 class="font-bold mb-2">Delivery Address</h5>
+                <textarea class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" rows="3">123 Street Food Lane, Mumbai, Maharashtra 400001</textarea>
+            </div>
+            <div class="mb-4">
+                <h5 class="font-bold mb-2">Delivery Time</h5>
+                <select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    <option>Today by 6 PM (additional ₹50)</option>
+                    <option selected>Tomorrow morning (9 AM - 12 PM)</option>
+                    <option>Tomorrow afternoon (1 PM - 4 PM)</option>
+                </select>
+            </div>
+            <div class="mb-6">
+                <h5 class="font-bold mb-2">Payment Method</h5>
+                <div class="flex items-center mb-2">
+                    <input type="radio" id="cod" name="payment" checked class="mr-2">
+                    <label for="cod">Cash on Delivery</label>
+                </div>
+                <div class="flex items-center mb-2">
+                    <input type="radio" id="upi" name="payment" class="mr-2">
+                    <label for="upi">UPI Payment</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="card" name="payment" class="mr-2">
+                    <label for="card">Credit/Debit Card</label>
+                </div>
+            </div>
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>Total:</span>
+                <span id="checkout-total">₹0</span>
+            </div>
+            <button onclick="placeOrder()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">Place Order</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md text-center">
+            <div class="flex justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Order Placed Successfully!</h3>
+            <p class="text-gray-700 mb-6">Your order #ORD-1004 has been confirmed and will be delivered as per your selected time.</p>
+            <button onclick="closeModal('success-modal')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4">StreetFood Connect</h4>
+                    <p class="text-gray-400">Connecting street food vendors with trusted suppliers for quality ingredients at affordable prices.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400">Marketplace</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400">Price Trends</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400">Become a Supplier</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contact Us</h4>
+                    <p class="text-gray-400 mb-2">Email: support@streetfoodconnect.com</p>
+                    <p class="text-gray-400 mb-2">Phone: +91 98765 43210</p>
+                    <p class="text-gray-400">Mumbai, Maharashtra</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 StreetFood Connect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Button -->
+    <button onclick="openCart()" class="fixed bottom-6 right-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-4 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+    </button>
+
+    <script>
+        // Initialize cart
+        let cart = [];
+        
+        // Initialize price chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const priceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Today'],
+                    datasets: [
+                        {
+                            label: 'Tomatoes (₹/kg)',
+                            data: [48, 52, 55, 58, 62, 65, 68],
+                            borderColor: 'rgba(220, 38, 38, 1)',
+                            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Onions (₹/kg)',
+                            data: [32, 31, 30, 29, 28, 27, 26],
+                            borderColor: 'rgba(22, 163, 74, 1)',
+                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Potatoes (₹/kg)',
+                            data: [24, 23, 22, 22, 22, 22, 22],
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Price (₹/kg)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Load any saved cart from localStorage
+            const savedCart = localStorage.getItem('streetfood_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function switchModals(fromId, toId) {
+            closeModal(fromId);
+            openModal(toId);
+        }
+
+        // Cart functions
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.remove('translate-x-full');
+            document.getElementById('cart-overlay').classList.remove('hidden');
+        }
+
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.add('translate-x-full');
+            document.getElementById('cart-overlay').classList.add('hidden');
+        }
+
+        function addToCart(name, price, unit) {
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    unit: unit,
+                    quantity: 1
+                });
+            }
+            
+            // Update cart UI
+            updateCart();
+            // Save to localStorage
+            localStorage.setItem('streetfood_cart', JSON.stringify(cart));
+            // Open cart
+            openCart();
+        }
+
+        function updateCart() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+            const cartCountEl = document.getElementById('cart-count');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<div class="text-center text-gray-500 py-8">Your cart is empty</div>';
+                cartTotalEl.textContent = '₹0';
+                cartCountEl.textContent = '0';
+                return;
+            }
+            
+            let itemsHtml = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHtml += `
+                    <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
+                        <div>
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-sm text-gray-500">₹${item.price}/${item.unit}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button onclick="updateQuantity('${item.name}', -1)" class="bg-gray-200 hover:bg-gray-300 h-8 w-8 rounded-l-lg flex items-center justify-center">-</button>
+                            <span class="bg-gray-100 h-8 w-10 flex items-center justify-center">${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.name}', 1)" class="bg-gray-200 hover:bg-gray-300 h-8 w-8 rounded-r-lg flex items-center justify-center">+</button>
+                        </div>
+                        <span class="font-medium">₹${itemTotal}</span>
+                    </div>
+                `;
+            });
+            
+            cartItemsEl.innerHTML = itemsHtml;
+            cartTotalEl.textContent = `₹${total}`;
+            cartCountEl.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Update checkout total as well
+            document.getElementById('checkout-total').textContent = `₹${total}`;
+        }
+
+        function updateQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            
+            if (item) {
+                item.quantity += change;
+                
+                // Remove item if quantity is 0 or less
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.name !== name);
+                }
+                
+                // Update and save
+                updateCart();
+                localStorage.setItem('streetfood_cart', JSON.stringify(cart));
+            }
+        }
+
+        function checkout() {
+            closeCart();
+            openModal('checkout-modal');
+        }
+
+        function placeOrder() {
+            // In a real app, this would send the order to the server
+            // For demo purposes, we just show success and clear the cart
+            cart = [];
+            localStorage.removeItem('streetfood_cart');
+            updateCart();
+            closeModal('checkout-modal');
+            openModal('success-modal');
+        }
+
+        // Auth functions (simplified for demo)
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation
+            if (email && password) {
+                alert('Login successful! (Demo)');
+                closeModal('login-modal');
+                // In a real app, you would set user session here
+            } else {
+                alert('Please enter both email and password');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const phone = document.getElementById('register-phone').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            
+            // Simple validation
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            alert('Registration successful! Please login. (Demo)');
+            closeModal('register-modal');
+            openModal('login-modal');
+        }
+    </script>
+</body>
+</html>
